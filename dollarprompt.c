@@ -49,7 +49,7 @@ int exarg(char *input)
 	if (pid == 0)
 	{
 		get_tokens(input, BLANK_STRING, &chargv);
-		exec_res = execvp(chargv[0], chargv);
+		exec_res = execve(chargv[0], chargv, NULL);
 		if (exec_res < 0)
 			perror("exec err");
 		exit(EXIT_FAILURE);
