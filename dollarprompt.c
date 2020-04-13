@@ -115,7 +115,6 @@ int get_tokens(char *line, const char *delimiters, char ***argvp)
 			*((*argvp) + i) = strtok(NULL, delimiters);
 	}
 	*((argvp) + numtokens) = NULL;
-
 	return (numtokens);
 }
 void shell_loop(void)
@@ -133,7 +132,6 @@ void shell_loop(void)
 			print_env();
 		else
 			exarg(line);
-
 		free(line);
 		free(args);
 	} while (status);
