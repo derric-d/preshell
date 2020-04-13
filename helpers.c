@@ -58,6 +58,9 @@ int _strspn(char *s, char *accept)
 {
 	int seg_count, in_accept, i;
 
+	if (!s || !accept)
+		return (-1);
+
 	/* in_accept = 0; */
 	for (seg_count = 0; s[seg_count]; seg_count++)
 	{
