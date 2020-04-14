@@ -1,4 +1,10 @@
-#include "shell.h"
+#include "shell_2.h"
+
+/**
+ * count_path_dir - counts path directories
+ * @path: path passed
+ * Return: count of directories
+ */
 unsigned int count_path_dir(char *path)
 {
 	unsigned int count, i, flag;

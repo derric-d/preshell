@@ -1,5 +1,11 @@
-#include "shell.h"
+#include "shell_2.h"
 
+/**
+ * exarg - executes argument passed
+ * @input: argument to execute
+ * @env: env passed through
+ * Return: 1 on success
+ */
 int exarg(char *input, char **env)
 {
 	pid_t pid;
@@ -43,6 +49,12 @@ int exarg(char *input, char **env)
 	}
 	return (1);
 }
+/**
+ * exec_path - executes when given pathless cmd
+ * @chargv: argument array
+ * @input: command given
+ * @env: env passed
+ */
 void exec_path(char **chargv, char *input, char **env)
 {
 	struct stat pathstat;
@@ -64,7 +76,10 @@ void exec_path(char **chargv, char *input, char **env)
 	free_dub(pathdirs);
 	exit(EXIT_SUCCESS);
 }
-
+/**
+ * eof_routine - handles eof
+ * @line: argument passed
+ */
 void eof_routine(char *line)
 {
 	if (isatty(STDIN_FILENO))

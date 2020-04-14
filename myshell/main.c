@@ -1,10 +1,21 @@
-#include "shell.h"
+#include "shell_2.h"
 
+
+/**
+ * exec_sig - executes on signal interupt
+ *
+ * @sig: signal value passed
+ */
 void exec_sig(int sig)
 {
 	(void)sig;
 	write(STDOUT_FILENO, "\n$", 3);
 }
+/**
+ * read_line - gets the command line input
+ *
+ * Return: returns the command line input
+ */
 char *read_line(void)
 {
 	char *line = NULL;
@@ -17,6 +28,13 @@ char *read_line(void)
 
 	return (line);
 }
+/**
+ * main - entry point
+ * @ac: argument count
+  * @av: argument vector
+  * @env: environment list
+ * Return: = on success
+ */
 int main(int ac, char **av, char **env)
 {
 	char *line;

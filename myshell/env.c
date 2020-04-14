@@ -1,5 +1,14 @@
-#include "shell.h"
+#include "shell_2.h"
 
+/**
+ * build_pathcmd - makes a path command using name of cmd and path
+ * @dest: path we are building
+ * @src: directory we are building
+ * @cmd: command we are appending
+ * @n: size of directory
+ * @c: size of command
+ * Return: returns path built from command
+ */
 char *build_pathcmd(char *dest, char *src, char *cmd, int n, int c)
 {
 
@@ -20,6 +29,12 @@ char *build_pathcmd(char *dest, char *src, char *cmd, int n, int c)
 	dest[i] = '\0';
 	return (dest);
 }
+/**
+ * env_array - makes an an array of environment
+ * @cmd: command we search the path for
+ * @environ: environment variable we search
+ * Return: array of commands
+ */
 char **env_array(char *cmd, char **environ)
 {
 	char **env_dirs;
@@ -54,6 +69,12 @@ char **env_array(char *cmd, char **environ)
 	env_dirs[i] = NULL;
 	return (env_dirs);
 }
+/**
+ * _getenv - returns the environment variable by name
+ * @name: name of env variable whose value we need
+ * @environ: environment
+ * Return: value of variable name
+ */
 char *_getenv(char *name, char **environ)
 {
 	char *env_var, *name_cpy;
@@ -83,6 +104,10 @@ char *_getenv(char *name, char **environ)
 	name_cpy = NULL;
 	return (NULL);
 }
+/**
+ * _printenv - prints out env in full
+ * @env: env passed to me
+ */
 void _printenv(char **env)
 {
 	unsigned int i, len;
@@ -95,6 +120,12 @@ void _printenv(char **env)
 		i++;
 	}
 }
+/**
+ * exec_env - executes on env builtin call
+ * @line: line we are passed
+ * @chargv: argument vector
+ * @env: env var passed
+ */
 void exec_env(char *line, char **chargv, char **env)
 {
 	free(line);
