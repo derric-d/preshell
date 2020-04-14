@@ -80,8 +80,9 @@ $
 ```
 ## Installation
 Clone this repository into your local machine:
-    /* TODO */
-    *insert github clone link here*
+```
+https://github.com/derric-d/simple_shell.git
+```
 Compile using the following flags:
 ```
 gcc -Wall -Werror -Wextra -pedantic *.c
@@ -112,4 +113,5 @@ $
 ```
 ## Authors
 Nic Basilio - [Github](https://github.com/bnbasilio)
+
 Derric Donehoo - [Github](https://github.com/derric-d)
