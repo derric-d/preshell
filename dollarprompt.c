@@ -5,6 +5,18 @@
 #include <string.h>
 #define MAX_LENGTH 1024
 #define BLANK_STRING " "
+
+void print_env(void)
+{
+
+	extern char **environ;
+	int i;
+
+	if (!environ)
+		return;
+	for (i = 0; environ[i]; i++)
+		printf("%s\n", environ[i]);
+}
 void eof_routine(char *line)
 {
 	if (isatty(STDIN_FILENO))
@@ -103,7 +115,6 @@ int get_tokens(char *line, const char *delimiters, char ***argvp)
 			*((*argvp) + i) = strtok(NULL, delimiters);
 	}
 	*((argvp) + numtokens) = NULL;
-	
 	return (numtokens);
 }
 void shell_loop(void)
@@ -115,8 +126,12 @@ void shell_loop(void)
 	do {
 		printf("$ ");
 		line = read_line();
-		exarg(line);
-
+		if (strcmp(line, "exit\n") == 0)
+			break;
+		if (strcmp(line, "env\n") == 0)
+			print_env();
+		else
+			exarg(line);
 		free(line);
 		free(args);
 	} while (status);
