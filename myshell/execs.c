@@ -1,12 +1,27 @@
 #include "shell_2.h"
+/**
+ * path_error - handles error for path cmd
+ * @chargv: argument vector
+ * @cmd: cmd passed
+ * @count: count of prompt cycles
+ */
+void path_error(char **chargv, char *cmd, int count)
+{
+	(void)chargv;
+	(void)count;
 
+	write(STDERR_FILENO, cmd, _strlen(cmd));
+	write(STDERR_FILENO, ": command not found\n", 20);
+
+}
 /**
  * exarg - executes argument passed
  * @input: argument to execute
  * @env: env passed through
+ * @count: count of prompt cycles
  * Return: 1 on success
  */
-int exarg(char *input, char **env)
+int exarg(char *input, char **env, int count)
 {
 	pid_t pid;
 	int status = 1, exec_res;
@@ -27,14 +42,14 @@ int exarg(char *input, char **env)
 			exec_env(input, chargv, env);
 		else if (stat(chargv[0], &filestat) == 0)
 		{
-			exec_res = execve(chargv[0], chargv, NULL);
+			exec_res = execve(chargv[0], chargv, env);
 			if (exec_res < 0)
 				perror("exec error");
 			exit(EXIT_FAILURE);
 		}
 		else
 		{
-			exec_path(chargv, input, env);
+			exec_path(chargv, input, env, count);
 		}
 	}
 	else if (pid < 0)
@@ -54,8 +69,9 @@ int exarg(char *input, char **env)
  * @chargv: argument array
  * @input: command given
  * @env: env passed
+ * @count: count of prompt cycles
  */
-void exec_path(char **chargv, char *input, char **env)
+void exec_path(char **chargv, char *input, char **env, int count)
 {
 	struct stat pathstat;
 	int i = 0;
@@ -68,12 +84,14 @@ void exec_path(char **chargv, char *input, char **env)
 			execve(pathdirs[i], chargv, NULL);
 		i++;
 	}
-	/* if no command found, ERROR  */
+	path_error(chargv, chargv[0], count);
 
 	free(input);
 	input = NULL;
 	free_dub(chargv);
+	chargv = NULL;
 	free_dub(pathdirs);
+	pathdirs = NULL;
 	exit(EXIT_SUCCESS);
 }
 /**

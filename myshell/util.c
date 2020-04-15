@@ -13,10 +13,16 @@ void free_dub(char **dub)
 	while (dub[i])
 	{
 		free(dub);
+		dub = NULL;
 		i++;
 	}
 	if (dub[i] == NULL)
+	{
 		free(dub[i]);
+		dub[i] = NULL;
+	}
+
 	free(dub);
+	dub = NULL;
 }
 
