@@ -43,7 +43,7 @@ int main(int ac, char **av, char **env)
 	(void)av;
 	signal(SIGINT, exec_sig);
 	do {
-		printf("$ ");
+		write(1, "$ ", 2);
 		line = read_line();
 		if (strcmp(line, "exit\n") == 0)
 		{
