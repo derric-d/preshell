@@ -53,8 +53,8 @@ char **env_array(char *cmd, char **environ)
 	dir = strtok(path, ":");
 	while (dir)
 	{
-		dir_len = strlen(dir);
-		cmd_len = strlen(cmd);
+		dir_len = _strlen(dir);
+		cmd_len = _strlen(cmd);
 
 		env_dirs[i] = malloc(sizeof(char) * (dir_len + cmd_len + 2));
 		if (!env_dirs[i])
@@ -80,7 +80,7 @@ char *_getenv(char *name, char **environ)
 	char *env_var, *name_cpy;
 	unsigned int i = 0, len;
 
-	len = strlen(name);
+	len = _strlen(name);
 	name_cpy = malloc((sizeof(char) * len) + 1);
 	if (!name_cpy)
 		return (NULL);
@@ -90,7 +90,7 @@ char *_getenv(char *name, char **environ)
 
 	while (environ[i])
 	{
-		if (strcmp(env_var, name_cpy) == 0)
+		if (_strcmp(env_var, name_cpy) == 0)
 		{
 			env_var = strtok(NULL, "\n");
 			free(name_cpy);
@@ -114,7 +114,7 @@ void _printenv(char **env)
 
 	while (env[i])
 	{
-		len = strlen(env[i]);
+		len = _strlen(env[i]);
 		write(1, env[i], len);
 		write(1, "\n", 1);
 		i++;

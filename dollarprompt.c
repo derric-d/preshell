@@ -1,10 +1,4 @@
-#include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#define MAX_LENGTH 1024
-#define BLANK_STRING " "
+#include "shell.h"
 
 void print_env(void)
 {
@@ -57,6 +51,9 @@ int exarg(char *input)
 	int i = 0, status, exec_res, res_get_t, y;
 	char **chargv;
 
+	(void) i;
+	(void) res_get_t;
+	(void) y;
 	pid = fork();
 	if (pid == 0)
 	{
@@ -138,6 +135,8 @@ void shell_loop(void)
 }
 int main(int ac, char **av)
 {
+	(void) ac;
+	(void) av;
 	shell_loop();
 
 	return (0);

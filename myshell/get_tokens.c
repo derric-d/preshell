@@ -13,7 +13,7 @@ int get_tokens(char *line, const char *delimiters, char ***argvp)
 	char *t;
 	const char *snew;
 
-	line[strlen(line) - 1] = '\0';
+	line[_strlen(line) - 1] = '\0';
 	if ((line == NULL) || (delimiters == NULL) || (argvp == NULL))
 	{
 		errno = EINVAL;
@@ -21,10 +21,10 @@ int get_tokens(char *line, const char *delimiters, char ***argvp)
 	}
 	*argvp = NULL;
 	snew = line + strspn(line, delimiters);
-	t = malloc(strlen(snew) + 1);
+	t = malloc(_strlen(snew) + 1);
 	if (t == NULL)
 		return (-1);
-	strcpy(t, snew);
+	_strcpy(t, snew);
 	if (strtok(t, delimiters) != NULL)
 		for (numtokens = 1; strtok(NULL, delimiters) != NULL; numtokens++)
 			;
@@ -41,7 +41,7 @@ int get_tokens(char *line, const char *delimiters, char ***argvp)
 		free(t);
 	else
 	{
-		strcpy(t, snew);
+		_strcpy(t, snew);
 		**argvp = strtok(t, delimiters);
 		for (i = 1; i < numtokens; i++)
 			*((*argvp) + i) = strtok(NULL, delimiters);

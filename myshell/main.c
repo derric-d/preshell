@@ -45,9 +45,14 @@ int main(int ac, char **av, char **env)
 	do {
 		printf("$ ");
 		line = read_line();
-		exarg(line, env);
+		if (strcmp(line, "exit\n") == 0)
+		{
+			return status;
+		}
+		status = exarg(line, env);
+		printf("status: %d\n", status);
 		free(line);
-	} while (status);
+	} while (1);
 	return (0);
 }
 

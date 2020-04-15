@@ -9,7 +9,7 @@
 int exarg(char *input, char **env)
 {
 	pid_t pid;
-	int status, exec_res;
+	int status = 1, exec_res;
 	struct stat filestat;
 	char **chargv;
 
@@ -23,7 +23,7 @@ int exarg(char *input, char **env)
 			input = NULL;
 			exit(EXIT_SUCCESS);
 		}
-		else if (strcmp("env", chargv[0]) == 0)
+		else if (_strcmp("env", chargv[0]) == 0)
 			exec_env(input, chargv, env);
 		else if (stat(chargv[0], &filestat) == 0)
 		{
@@ -47,7 +47,7 @@ int exarg(char *input, char **env)
 			wait(&status);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
-	return (1);
+	return (status);
 }
 /**
  * exec_path - executes when given pathless cmd
@@ -89,3 +89,19 @@ void eof_routine(char *line)
 	exit(0);
 }
 
+/**
+ * exec_exit - exits the shell
+ * @line: line we are passed
+ * @chargv: argument vector
+ * @env: env var passed
+ */
+int exec_exit(char *line, char **chargv)
+{
+	/*free(line);
+	line = NULL;
+	free_dub(chargv);
+	chargv = NULL;*/
+	(void) line;
+	(void) chargv;
+	return (0);
+}

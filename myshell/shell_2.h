@@ -26,5 +26,9 @@ int exarg(char *input, char **env);
 void exec_path(char **chargv, char *input, char **env);
 void eof_routine(char *line);
 char *read_line(void);
+size_t _strlen (const char *s);
+int _strcmp(const char *s1, const char *s2);
+char *_strcpy(char *dest, const char *src);
+int exec_exit(char *line, char **chargv);
 
 #endif
