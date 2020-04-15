@@ -50,7 +50,6 @@ int main(int ac, char **av, char **env)
 			return status;
 		}
 		status = exarg(line, env);
-		printf("status: %d\n", status);
 		free(line);
 	} while (1);
 	return (0);
