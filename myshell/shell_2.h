@@ -29,6 +29,7 @@ char *read_line(void);
 size_t _strlen (const char *s);
 int _strcmp(const char *s1, const char *s2);
 char *_strcpy(char *dest, const char *src);
+char char *_strncpy(char *dest, const char *src, size_t n);
 int exec_exit(char *line, char **chargv);
 
 #endif
