@@ -33,7 +33,7 @@ int _strcmp(const char *s1, const char *s2)
 
 char *_strncpy(char *dest, const char *src, size_t n)
 {
-	int i;
+	size_t i;
 
 	if (!dest || !src)
 		return (NULL);
